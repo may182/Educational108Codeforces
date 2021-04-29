@@ -1,0 +1,209 @@
+Qn 3 
+Time limit exceeded on test case 4
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+
+int gcd(int a, int b)
+{
+    if (b > a)
+        return gcd(b, a);
+    if (b == 0)
+        return a;
+
+    return gcd(b, a % b);
+}
+
+
+
+int main()
+{
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        vector<int> univ(n);
+        vector<int> skill(n);
+
+        for (int i = 0; i < n; i++)
+            cin >> univ[i];
+
+        for (int i = 0; i < n; i++)
+            cin >> skill[i];
+
+        vector<pair<int, int>> vect;
+        for (int i = 0; i < n; i++)
+        {
+            vect.push_back({univ[i], skill[i]});
+        }
+
+        sort(vect.begin(), vect.end());
+        
+        // for(int i=0;i<n;i++)
+        //     cout<<vect[i].first<<" "<<vect[i].second<<" ";
+        //     cout<<endl;
+
+        vector<vector<int>> matrix;
+        int cnt = vect[0].first;
+        vector<int> temp;
+        for (int i = 0; i < n; i++)
+        {
+            // if(i==n-1 && vect[i].first==cnt)
+            //     {   
+            //         temp.push_back(vect[i].second);
+                    
+            //     }
+            if (vect[i].first == cnt)
+            {
+                temp.push_back(vect[i].second);
+            
+            }
+            
+            else
+            {
+                sort(temp.begin(), temp.end(),greater<int>());
+                matrix.push_back(temp);
+                temp.clear();
+                temp.push_back(vect[i].second);
+                cnt=vect[i].first;
+            }
+        }
+        sort(temp.begin(),temp.end(),greater<int>());
+        matrix.push_back(temp);
+        temp.clear();
+        // cout<<matrix.size()<<"OO"<<endl;
+        // for(int i=0;i<matrix.size();i++)
+        //     {
+        //         for(int j=0;j<matrix[i].size();j++)
+        //             cout<<matrix[i][j]<<" ";
+        //             cout<<endl;
+        //     }
+        vector<int> ans;
+        // if(matrix.size()==1)
+        //     {
+        //         for(int k=1;k<=n;k++)
+        //             {   int tt=0;
+        //                 for(int i=0;i<(matrix.size()-matrix.size()%k);i++)
+        //                     {
+        //                         tt+=matrix[0][i];
+        //                     }
+        //                     ans.push_back(tt);
+        //             }
+        //             continue;
+        //     }
+        for (int k = 1; k <= n; k++)
+        {
+            int tempo = 0;
+            for (int i = 0; i < matrix.size(); i++)
+            {
+                // cout<<matrix.size()<<" matrix size "<<endl;   
+                for (int j = 0; j < (matrix[i].size() - (matrix[i].size() % k)); j++)
+                {
+                    tempo += matrix[i][j];
+                }
+            }
+            ans.push_back(tempo);
+        }
+
+        for(int i=0;i<n;i++)
+            cout<<ans[i]<<" ";
+            cout<<endl;
+    }
+
+    return 0;
+}
+
+
+Qn 2
+Accepted
+#include<bits/stdc++.h> 
+using namespace std;
+ 
+#define ll long long 
+ 
+int gcd(int a,int b)
+{
+    if(b>a)
+        return gcd(b,a);
+    if(b==0)
+        return a;
+ 
+    return gcd(b,a%b);        
+}
+ 
+int main()
+ {
+     int t;
+     cin>>t;
+ 
+     while(t--)
+        {
+            int n,m,k;
+            cin>>n>>m>>k;
+            if((m-1+m*(n-1)) ==k)
+                cout<<"YES\n";
+ 
+            else cout<<"NO\n";
+                    
+        }
+    
+    return 0;
+ }
+
+Qn 1
+Accepted
+#include<bits/stdc++.h> 
+using namespace std;
+ 
+#define ll long long 
+ 
+int gcd(int a,int b)
+{
+    if(b>a)
+        return gcd(b,a);
+    if(b==0)
+        return a;
+ 
+    return gcd(b,a%b);        
+}
+ 
+int main()
+ {
+     int t;
+     cin>>t;
+ 
+     while(t--)
+        {
+            int r,b,d;
+            cin>>r>>b>>d;
+ 
+            // if(r==b && d==0)
+            //     {
+            //         cout<<"YES\n";
+            //         continue;
+            //     }
+ 
+ 
+            double ans=abs(b-r);
+            double a=ans/(double)min(r,b);
+            // cout<<a<<endl;
+            if(a<=d) cout<<"YES\n";
+            else cout<<"NO\n";
+            // int ma=max(r,b);
+            // int mi=min(r,b);
+            // while(ma && mi)
+            //     {
+            //         mi-=1;
+            //         ma-=(1+d);
+            //     }
+            // if(ma<=0)
+            //     cout<<"YES\n";
+            // else cout<<"NO\n";        
+        }
+    
+    return 0;
+ }
